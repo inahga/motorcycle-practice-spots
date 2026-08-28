@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-87.67764227116683, 41.87986510741671]
+      },
+      "properties": {
+        "name": "Ride Chicago City Riding Site",
+        "address": "118 S Damen Ave, Chicago, IL 60612",
+        "notes": "Active training range."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-88.177858, 41.503454]
+      },
+      "properties": {
+        "name": "Joliet Junior College (IDOT CRSTP)",
+        "address": "1215 Houbolt Rd, Joliet, IL 60431",
+        "notes": "Active training range, lot adjacent to Building U / Lot E6."
+      }
+    }
+  ]
+}

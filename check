@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+
+import html.parser
+import json
+import os
+import py_compile
+import sys
+import tempfile
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+errors = []
+
+
+def err(msg):
+    errors.append(msg)
+
+
+def check_spots():
+    try:
+        with open(os.path.join(ROOT, "spots.geojson")) as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        err(f"spots.geojson: {e}")
+        return
+
+    if data.get("type") != "FeatureCollection" or not isinstance(
+        data.get("features"), list
+    ):
+        err("spots.geojson: not a FeatureCollection with a features list")
+        return
+
+    seen = {}
+    for i, feat in enumerate(data["features"]):
+        where = f"feature {i}"
+        props = feat.get("properties") or {}
+        name = props.get("name")
+        if isinstance(name, str) and name.strip():
+            where = f"feature {i} ({name})"
+        else:
+            err(f"{where}: properties.name must be a non-empty string")
+
+        for key in ("address", "notes"):
+            if key in props and not isinstance(props[key], str):
+                err(f"{where}: properties.{key} must be a string")
+
+        if feat.get("type") != "Feature":
+            err(f'{where}: type must be "Feature"')
+        geom = feat.get("geometry") or {}
+        if geom.get("type") != "Point":
+            err(f'{where}: geometry.type must be "Point"')
+            continue
+        coords = geom.get("coordinates")
+        if (
+            not isinstance(coords, list)
+            or len(coords) != 2
+            or not all(isinstance(c, (int, float)) for c in coords)
+        ):
+            err(f"{where}: coordinates must be [longitude, latitude] numbers")
+            continue
+        lon, lat = coords
+        if not -180 <= lon <= 180:
+            err(f"{where}: longitude {lon} out of range (is it [lon, lat] order?)")
+        if not -90 <= lat <= 90:
+            err(f"{where}: latitude {lat} out of range (is it [lon, lat] order?)")
+
+        key = (lon, lat)
+        if key in seen:
+            err(f"{where}: coordinates identical to {seen[key]} — copy/paste error?")
+        else:
+            seen[key] = where
+
+
+def check_geocode():
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            py_compile.compile(
+                os.path.join(ROOT, "geocode"),
+                cfile=os.path.join(tmp, "geocode.pyc"),
+                doraise=True,
+            )
+        except py_compile.PyCompileError as e:
+            err(f"geocode: {e.msg}")
+        except OSError as e:
+            err(f"geocode: {e}")
+
+
+def check_index():
+    try:
+        with open(os.path.join(ROOT, "index.html")) as f:
+            page = f.read()
+    except OSError as e:
+        err(f"index.html: {e}")
+        return
+
+    for needle, why in [
+        ("spots.geojson", "fetch of the spots data"),
+        ('id="map"', "the map container div"),
+        ("leaflet.js", "the Leaflet script tag"),
+        ("leaflet.css", "the Leaflet stylesheet"),
+        ("openstreetmap.org/copyright", "OSM attribution"),
+    ]:
+        if needle not in page:
+            err(f"index.html: missing {needle!r} ({why})")
+
+    parser = html.parser.HTMLParser()
+    try:
+        parser.feed(page)
+        parser.close()
+    except Exception as e:
+        err(f"index.html: does not parse: {e}")
+
+
+def main():
+    check_spots()
+    check_geocode()
+    check_index()
+    if errors:
+        for e in errors:
+            print(f"FAIL: {e}")
+        return 1
+    print("ok")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
