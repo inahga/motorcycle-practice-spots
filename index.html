@@ -11,6 +11,16 @@
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <style>
     html, body, #map { height: 100%; margin: 0; }
+    .about {
+      max-width: 260px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+      padding: 8px 12px;
+      font: 12px/1.5 sans-serif;
+    }
+    .about summary { font-weight: 700; cursor: pointer; }
+    .about p { margin: 6px 0 0; }
   </style>
 </head>
 <body>
@@ -22,6 +32,25 @@
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &middot; <a href="https://www.openstreetmap.org/fixthemap">Report a map issue</a> &middot; <a href="https://github.com/inahga">Contribute</a>'
     }).addTo(map);
+
+    const about = L.control({ position: 'topright' });
+    about.onAdd = () => {
+      const div = L.DomUtil.create('div', 'about');
+      div.innerHTML = `
+        <details open>
+          <summary>Motorcycle Practice Spots</summary>
+          <p>Known practice ranges: areas with lines painted for practicing
+          weaves, turns, cornering, state tests, etc. Simple parking lots
+          are not practice ranges.</p>
+          <p><b>Not all spots are known to be friendly to strangers.
+          Use at your own risk.</b></p>
+          <p><a href="https://github.com/inahga/motorcycle-practice-spots">Contribute a spot</a></p>
+        </details>`;
+      L.DomEvent.disableClickPropagation(div);
+      L.DomEvent.disableScrollPropagation(div);
+      return div;
+    };
+    about.addTo(map);
 
     fetch('spots.geojson')
       .then(r => r.json())
