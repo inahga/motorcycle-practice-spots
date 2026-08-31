@@ -10,7 +10,7 @@
       "properties": {
         "name": "Ride Chicago City Riding Site",
         "address": "118 S Damen Ave, Chicago, IL 60612",
-        "notes": "Motorcycle training range. They offer classes here, you should take them!"
+        "notes": "Motorcycle training range. They offer classes here, you should take them! Adjacent to residential area and a school, so be courteous!"
       }
     },
     {
@@ -36,6 +36,20 @@
         "address": "19356 NE Frontage Rd, Shorewood, IL 60404",
         "notes": "Motorcycle training range"
       }
+    },
+    {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -88.20686191092501,
+        41.79948696403177,
+      ]
+    },
+    "properties": {
+      "name": "Naperville DMV",
+      "address": "1771 W Diehl Rd #110, Naperville, IL",
+      "notes": "State licensing test range. Be careful, lots of driving lessons seem to take place here."
     }
   ]
 }
