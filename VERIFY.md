@@ -2,13 +2,10 @@ Pending verification
 
 | Site | Address | Lat, Lon | Status |
 |---|---|---|---|
-| Ride Chicago City Riding Site | 118 S Damen Ave, Chicago, IL 60612 | 41.87986510741671, -87.67764227116683 | Active range |
 | Illinois Harley-Davidson | 9950 Joliet Rd, Countryside, IL 60525 | 41.781, -87.881 | Active range |
 | Windy City Harley-Davidson | 14000 W Rockland Rd, Green Oaks, IL 60048 | 42.276, -87.912 | Active range |
 | Woodstock Harley-Davidson | 2235 S Eastwood Dr, Woodstock, IL 60098 | 42.291, -88.442 | Active range |
 | Chicago Harley-Davidson | 120 W North Ave, Villa Park, IL 60181 | 41.907, -87.973 | Active range |
-| Conrad's Harley-Davidson | 19356 NE Frontage Rd, Shorewood, IL 60404 | 41.53, -88.18 | Active courses, range unverified |
-| Joliet Junior College (IDOT CRSTP) | 1215 Houbolt Rd, Joliet, IL 60431 | 41.507, -88.128 | Active range |
 | College of Lake County (IDOT CRSTP) | 19351 W Washington St, Grayslake, IL 60030 | 42.340, -88.008 | Active range |
 | Chicago North DMV | 5401 N Elston Ave, Chicago, IL 60630 | 41.978, -87.752 | DMV test course + former training range |
 | Schaumburg DMV | 1227 E Golf Rd, Schaumburg, IL 60173 | 42.051, -88.048 | DMV test course |

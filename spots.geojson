@@ -10,7 +10,7 @@
       "properties": {
         "name": "Ride Chicago City Riding Site",
         "address": "118 S Damen Ave, Chicago, IL 60612",
-        "notes": "Active training range."
+        "notes": "Motorcycle training range. They offer classes here, you should take them!"
       }
     },
     {
@@ -22,7 +22,19 @@
       "properties": {
         "name": "Joliet Junior College (IDOT CRSTP)",
         "address": "1215 Houbolt Rd, Joliet, IL 60431",
-        "notes": "Active training range, lot adjacent to Building U / Lot E6."
+        "notes": "Motorcycle training range. Lot E6, adjacent to Building U. Also offers free classes, but they're in high demand"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-88.18103747897844, 41.53129847430796]
+      },
+      "properties": {
+        "name": "Conrad's Harley-Davidson",
+        "address": "19356 NE Frontage Rd, Shorewood, IL 60404",
+        "notes": "Motorcycle training range"
       }
     }
   ]
