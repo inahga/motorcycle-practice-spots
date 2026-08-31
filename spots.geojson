@@ -38,18 +38,19 @@
       }
     },
     {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        -88.20686191092501,
-        41.79948696403177,
-      ]
-    },
-    "properties": {
-      "name": "Naperville DMV",
-      "address": "1771 W Diehl Rd #110, Naperville, IL",
-      "notes": "State licensing test range. Be careful, lots of driving lessons seem to take place here."
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.20686191092501,
+          41.79948696403177
+        ]
+      },
+      "properties": {
+        "name": "Naperville DMV",
+        "address": "1771 W Diehl Rd #110, Naperville, IL",
+        "notes": "State licensing test range. Be careful, lots of driving lessons seem to take place here."
+      }
     }
   ]
 }
